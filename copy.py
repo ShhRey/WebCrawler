@@ -20,9 +20,9 @@ while True:
         button.click()
         i += 1
         print("Button Pressed", i)
-        time.sleep(15)                                                                              # Wait for the new content to load
+        time.sleep(15)  # Wait for the new content to load
     except Exception as e:
-        break                                                                                       # Exit the loop if the button is no longer available
+        break  # Exit the loop if the button is no longer available
 
 
 articles = driver.find_elements(By.XPATH, '/html/body/div[1]/main/div/div[3]/article')
@@ -34,10 +34,10 @@ for article in articles:
     article_title = article.find_element(By.XPATH, './div/div[2]/header/h2').text
     article_link = article.find_element(By.XPATH, './div/div[2]/header/h2/a').get_attribute('href') 
     article_img = article.find_element(By.XPATH, './div/div[1]/img').get_attribute("src")
-    article_publisher = article.find_element(By.XPATH, './div/div[2]/header/p').text
-    article_publisher = article_publisher.split(' (')
-    article_author = article_publisher[0]
-    article_time = article_publisher[1]
+    article_owner = article.find_element(By.XPATH, './div/div[2]/header/p').text
+    article_owner = article_owner.split(' (')
+    article_author = article_owner[0]
+    article_time = article_owner[1]
     article_content = article.find_element(By.XPATH, './div/div[2]/div').text
 
     article_data['ArticleID'] = idgen()
@@ -45,9 +45,10 @@ for article in articles:
     article_data['Title'] = article_title
     article_data['Image'] = article_img
     article_data['Content'] = article_content
-    article_data['Publisher'] = article_author
+    article_data['Author'] = article_author
     article_data['Time'] = article_time
     article_list.append(article_data)
 
 # print(article_list[0])
 col1.insert_many(article_list)
+
