@@ -4,3 +4,4 @@ client = pymongo.MongoClient('mongodb://mongodbuser:wpytGAfnq%40%24%23P93Yt2y@mo
 db = client['News-Data']
 
 col1 = db['CoinGecko']
+col2 = db['CoinMarketCap']
